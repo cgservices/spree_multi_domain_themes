@@ -1,3 +1,7 @@
+$:.push File.expand_path("../lib", __FILE__)
+
+require 'spree_multi_domain_themes/version'
+
 # encoding: UTF-8
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY

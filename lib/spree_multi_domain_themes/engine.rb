@@ -17,6 +17,18 @@ module SpreeMultiDomainThemes
       end
     end
 
+    initializer "include theme path for rendering" do |app|
+      ActionController::Base.class_eval do
+        def _prefixes_with_store_template
+          _prefixes_without_store_template
+          store_template = "spree/#{controller_name}/#{current_store.code}"
+          @_prefixes.unshift(store_template) unless @_prefixes.include?(store_template)
+          @_prefixes
+        end
+        alias_method_chain :_prefixes, :store_template
+      end
+    end
+
     config.to_prepare &method(:activate).to_proc
   end
 end
