@@ -6,6 +6,9 @@ namespace :deface do
   desc "Precompiles overrides into template files for multiple themes"
   task :precompile_multi_theme => [:environment, :clean] do |t, args|
 
+    # fix: otherwise compiling won't work in staging/production
+    Rails.application.config.cache_classes = false
+
     Rails.application.config.deface = Deface::Environment.new
     Rails.application.config.deface.overrides.early_check
 
