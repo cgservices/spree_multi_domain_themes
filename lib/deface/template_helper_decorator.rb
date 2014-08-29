@@ -26,8 +26,6 @@ Deface::TemplateHelper.module_eval do
       @lookup_context.find(name, prefix, partial)
     end
 
-    # binding.pry if virtual_path.to_s == 'spree/shared/_header'
-
     if view.handler.to_s == "Haml::Plugin"
       Deface::HamlConverter.new(view.source).result
     else

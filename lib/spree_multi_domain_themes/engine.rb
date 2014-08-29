@@ -37,15 +37,6 @@ module SpreeMultiDomainThemes
           end
         end
 
-        def _prefixes_with_store_template
-          _prefixes_without_store_template
-          store_template = "spree/#{controller_name}/#{current_store.group}"
-          @_prefixes.unshift(store_template) unless @_prefixes.include?(store_template)
-          group_template = "spree/#{controller_name}/#{current_store.group}/#{current_store.code}"
-          @_prefixes.unshift(group_template) unless @_prefixes.include?(group_template)
-          @_prefixes
-        end
-        alias_method_chain :_prefixes, :store_template
       end
     end
 
