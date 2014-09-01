@@ -30,8 +30,8 @@ module SpreeMultiDomainThemes
         before_filter do
           # here we set the view paths and tell deface to also use the correct view_paths.
           # We activate the Deface railtie so that it reloads all it's overrides
+          set_view_paths
           if Rails.env != 'production'
-            set_view_paths
             Deface::TemplateHelper.view_paths = view_paths
             Deface::Railtie.activate
           end
