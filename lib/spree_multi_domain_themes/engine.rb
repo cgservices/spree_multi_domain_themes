@@ -30,11 +30,13 @@ module SpreeMultiDomainThemes
         before_filter do
           # here we set the view paths and tell deface to also use the correct view_paths.
           # We activate the Deface railtie so that it reloads all it's overrides
+          SpreeMultiDomainThemes.current_theme = CgConfig::THEMES[current_store.group.to_sym]
           set_view_paths
           if Rails.env == 'development'
             Deface::TemplateHelper.view_paths = view_paths
             Deface::Railtie.activate
           end
+          prepend_view_path 'app/compiled_views/' + SpreeMultiDomainThemes.current_theme
         end
 
       end
