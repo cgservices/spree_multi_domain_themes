@@ -5,8 +5,7 @@ Deface::Environment::Overrides.class_eval do
   def load_overrides(railtie)
     unless SpreeMultiDomainThemes.themes_to_remove.collect { |theme| railtie.root.to_s.include?(theme) }.any?
       Deface::Override.current_railtie = railtie.class.to_s
-      paths = railtie.respond_to?(:paths) ? railtie.paths["app/overrides"] : nil
-      enumerate_and_load(paths, railtie.root)
+      enumerate_and_load(["app/overrides/#{SpreeMultiDomainThemes.current_theme}"], railtie.root)
     end
   end
 
