@@ -3,8 +3,12 @@ require 'spree_multi_domain_themes/engine'
 
 module SpreeMultiDomainThemes
 
-  mattr_accessor :themes
   mattr_accessor :current_theme
+  mattr_accessor :themes
+
+  def self.themes
+    ::Spree::Store.all.map{|store| store.code}
+  end
 
   def self.themes_to_remove
     themes - [current_theme]
